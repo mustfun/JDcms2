@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.i18n.encoding" value="utf-8" />
+	
+   
+    <package name="default" namespace="/" extends="struts-default">
+    
+    <global-results>
+			<result name="admin_main">/WEB-INF/admin/admin_main.jsp</result>
+			<result name="error">/error.jsp</result>
+		</global-results>
+    	<!-- 我靠这里写bean的名称，而不是类的名称 -->
+									<action  name="role_*" class="userAction" method="{1}">  <!-- 这里的name就是地址栏上面写什么懂否，地址栏上就要写role_list.action -->
+												<result name="gotologin">/WEB-INF/public/role_login.jsp</result>   <!-- 第一个*号匹配的可以替换1，第二个*号匹配的替换2 -->
+												<result name="teacher_main">/WEB-INF/teacher/teacher_main.jsp</result>
+												<result name="stu_main">/WEB-INF/student/student_main.jsp</result>
+												<result name="admin_main">/WEB-INF/admin/admin_main.jsp</result>
+												
+												<result name="tolist"  type="redirect">role_list</result>  <!-- 根据你的返回值进行匹配的 -->
+									</action>
+									<!-- 这里action应该写在拦截器的后面，要不然就会报错 -->
+									
+									<action name="home_*" class="homeAction" method="{1}">
+													<result name="top">/WEB-INF/admin/top.jsp</result>
+													<result name="index">/WEB-INF/admin/right.jsp</result>
+													<result name="left">/WEB-INF/admin/left.jsp</result>
+													<result name="tohome">/WEB-INF/public/role_login.jsp</result>
+									</action>
+									
+									<action name="teacher_*" class="teacherAction" method="{1}">
+													<result name="add">/WEB-INF/admin/addteacher.jsp</result>
+													<result name="all">/WEB-INF/admin/allteacher.jsp</result>
+													<result name="edit">/WEB-INF/admin/editteacher.jsp</result>
+													
+									</action>
+									
+										<action name="student_*" class="studentAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/student/addstudent.jsp</result>
+													<result name="tolist">/WEB-INF/admin/student/allstudent.jsp</result>
+													<result name="edit">/WEB-INF/admin/student/editstudent.jsp</result>
+									</action>
+									
+									<action name="course_*" class="courseAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/course/addcourse.jsp</result>
+													<result name="all">/WEB-INF/admin/course/allcourse.jsp</result>
+													<result name="edit">/WEB-INF/admin/course/editcourse.jsp</result>
+									</action>
+								
+									<action name="coursetype_*" class="coursetypeAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/coursetype/addcoursetype.jsp</result>
+													<result name="all">/WEB-INF/admin/coursetype/allcoursetype.jsp</result>
+													<result name="edit">/WEB-INF/admin/coursetype/editcoursetype.jsp</result>
+									</action>
+									
+									<action name="academy_*" class="academyAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/academy/addacademy.jsp</result>
+													<result name="all">/WEB-INF/admin/academy/allacademy.jsp</result>
+													<result name="edit">/WEB-INF/admin/academy/editacademy.jsp</result>
+									</action>
+									
+									<action name="studytime_*" class="studytimeAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/studytime/addstudytime.jsp</result>
+													<result name="all">/WEB-INF/admin/studytime/allstudytime.jsp</result>
+													<result name="edit">/WEB-INF/admin/studytime/editstudytime.jsp</result>
+									</action>
+									
+										<action name="school_*" class="schoolAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/school/addschool.jsp</result>
+													<result name="all">/WEB-INF/admin/school/allschool.jsp</result>
+													<result name="edit">/WEB-INF/admin/school/editschool.jsp</result>
+									</action>
+									
+									<action name="myclass_*" class="myclassAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/myclass/addclass.jsp</result>
+													<result name="all">/WEB-INF/admin/myclass/allclass.jsp</result>
+													<result name="edit">/WEB-INF/admin/myclass/editclass.jsp</result>
+									</action>
+									<!-- 这个是班级课程表 -->
+										<action name="classcourse_*" class="classcourseAction" method="{1}">
+													<result name="addui">/WEB-INF/admin/classcourse/addclasscourse.jsp</result>
+													<result name="all">/WEB-INF/admin/classcourse/allclasscourse.jsp</result>
+													<result name="edit">/WEB-INF/admin/classcourse/editclasscourse.jsp</result>
+									</action>
+
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>
